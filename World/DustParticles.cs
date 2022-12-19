@@ -18,7 +18,7 @@ public partial class DustParticles : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (Player.AnimatedSprite2D.Animation.Equals("run") && Player.IsOnFloor())
+		if (Player.AnimatedSprite.Animation.Equals("run") && Player.IsOnFloor())
 			Particles.ForEach(i => i.Emitting = true);
 		else
 			Particles.ForEach(i => i.Emitting = false);
