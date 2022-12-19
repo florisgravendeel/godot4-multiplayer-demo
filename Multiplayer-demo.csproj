@@ -4,4 +4,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>Multiplayerdemo</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="World\test.gd" />
+  </ItemGroup>
 </Project>

@@ -15,7 +15,6 @@ public partial class Player : CharacterBody2D
 
 	public override void _Ready()
 	{
-		GD.Print(Gravity);
 		AnimatedSprite2D = GetNode<AnimatedSprite2D>("MaskFrog");
 	}
 	
