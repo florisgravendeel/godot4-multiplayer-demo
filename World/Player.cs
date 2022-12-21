@@ -13,6 +13,7 @@ public partial class Player : CharacterBody2D
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public const float Gravity = 980;
+	public AnimatedSprite2D AnimatedSprite => AnimatedSprite2D[(int)Skin];
 
 	public override void _Ready()
 	{
@@ -55,7 +56,6 @@ public partial class Player : CharacterBody2D
 		MoveAndSlide();
 	}
 
-	public AnimatedSprite2D AnimatedSprite => AnimatedSprite2D[(int)Skin];
 
 	public override void _Input(InputEvent @event)
 	{
@@ -70,9 +70,10 @@ public partial class Player : CharacterBody2D
 			SetSkin(Skins.PinkMan);
 		}
 	}
-
+	
 	private void SetSkin(Skins skin)
 	{
+		Skin = skin;
 		GetNode<Label>("PlayerTag").Text = skin.ToString();
 		var list = GetChildren().OfType<AnimatedSprite2D>().ToList();
 		list.ForEach(x =>
