@@ -25,3 +25,4 @@ func add_player_character(id=1):
 	var character = preload("res://player_character/player_character.tscn").instantiate()
 	character.name = str(id)
 	add_child(character)
+	
