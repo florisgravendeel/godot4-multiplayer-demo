@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://d0epdlft2yw3q"]
+[gd_scene load_steps=31 format=3 uid="uid://rij3x0inqta2"]
 
 [ext_resource type="Texture2D" uid="uid://cxmq51gftjvc3" path="res://Sprites/Traps/Fire/On (16x32).png" id="1_e4fem"]
 [ext_resource type="Texture2D" uid="uid://bilw2ckm0xoph" path="res://Sprites/Terrain/Terrain (16x16).png" id="1_xqoi3"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cn8p6er2ve52n" path="res://World/Cherry/cherry.tscn" id="12_s8sbn"]
 [ext_resource type="TileSet" uid="uid://cfu7wy2j6hnf" path="res://World/tilemap.tres" id="14_lkgl3"]
 [ext_resource type="StyleBox" uid="uid://dywna2sd8nxva" path="res://Menu/button_normal_style.tres" id="15_o4kqp"]
+[ext_resource type="Script" path="res://Menu/main_menu.gd" id="15_optqy"]
 [ext_resource type="Texture2D" uid="uid://jvab0wy7bgtf" path="res://Sprites/Joystick/flatLight/flatLight01.png" id="23_sqbsr"]
 [ext_resource type="Texture2D" uid="uid://2p55owwlh1ry" path="res://Sprites/Joystick/transparentLight/transparentLight01.png" id="24_pt4jp"]
 [ext_resource type="Texture2D" uid="uid://ci6ddahaerwat" path="res://Sprites/Joystick/flatLight/flatLight08.png" id="25_7j2mv"]
@@ -16,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://0epobjvraeq6" path="res://Sprites/Joystick/transparentLight/transparentLight04.png" id="28_5yyr6"]
 [ext_resource type="Texture2D" uid="uid://ino02t5rte8n" path="res://Sprites/Joystick/flatLight/flatLight03.png" id="29_3ephs"]
 [ext_resource type="Texture2D" uid="uid://c74eu5shng3sr" path="res://Sprites/Joystick/transparentLight/transparentLight03.png" id="30_ug7sb"]
-[ext_resource type="Script" path="res://Menu/MainMenu.cs" id="31_i1k1m"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nfmyb"]
 atlas = ExtResource("1_e4fem")
@@ -655,6 +655,7 @@ sources/4 = SubResource("TileSetAtlasSource_od150")
 
 [node name="Level" type="Node2D" parent="."]
 unique_name_in_owner = true
+script = ExtResource("15_optqy")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Level"]
 _spawnable_scenes = PackedStringArray("res://Player/player.tscn")
@@ -806,8 +807,8 @@ texture_pressed = ExtResource("30_ug7sb")
 action = "left"
 
 [node name="MainMenu" type="Node2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(2.08165e-12, -1000)
-script = ExtResource("31_i1k1m")
 
 [node name="TileMap" type="TileMap" parent="MainMenu"]
 scale = Vector2(2, 2)
@@ -877,3 +878,6 @@ theme_override_fonts/font = ExtResource("3_deex0")
 theme_override_font_sizes/font_size = 32
 text = "IP
 "
+
+[connection signal="pressed" from="MainMenu/Redwall/JoinGameButton" to="Level" method="_on_join_pressed"]
+[connection signal="pressed" from="MainMenu/Redwall/HostGameButton" to="Level" method="_on_host_pressed"]

@@ -8,6 +8,16 @@
 
 config_version=5
 
+_global_script_classes=[{
+"base": "Node",
+"class": &"MultiplayerState",
+"language": &"GDScript",
+"path": "res://Player/State.gd"
+}]
+_global_script_class_icons={
+"MultiplayerState": ""
+}
+
 [application]
 
 config/name="Multiplayer-demo"

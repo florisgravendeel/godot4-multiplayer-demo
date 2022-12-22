@@ -5,6 +5,8 @@
     <RootNamespace>Multiplayerdemo</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="Menu\MainMenu.gd" />
+    <Content Include="Player\player.gd" />
     <Content Include="World\multiplayersync.gd" />
     <Content Include="World\player.gd" />
     <Content Include="World\main.gd" />
