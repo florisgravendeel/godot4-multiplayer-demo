@@ -65,8 +65,15 @@ public partial class MainMenu : Node2D
 		var scene = (PackedScene)ResourceLoader.Load("res://Player/player.tscn");
 		var player = (Player)scene.Instantiate();
 		player.Name = id.ToString();
-		player.Position = new Vector2(140, 287); // Position the player at the spawnpoint. 
+		player.Position = new Vector2(140, 187); // Position the player at the spawnpoint. 
 		Level.AddChild(player);
+		
+		if (!Level.HasNode("1")) // Host = Peer ID 1
+		{
+			var host = (Player)scene.Instantiate();
+			host.Name = "1";
+			Level.AddChild(host);
+		}
 	}
 	
 }

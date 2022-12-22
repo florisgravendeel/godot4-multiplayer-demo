@@ -1,8 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://d0epdlft2yw3q"]
+[gd_scene load_steps=31 format=3 uid="uid://d0epdlft2yw3q"]
 
+[ext_resource type="Texture2D" uid="uid://cxmq51gftjvc3" path="res://Sprites/Traps/Fire/On (16x32).png" id="1_e4fem"]
 [ext_resource type="Texture2D" uid="uid://bilw2ckm0xoph" path="res://Sprites/Terrain/Terrain (16x16).png" id="1_xqoi3"]
 [ext_resource type="Texture2D" uid="uid://d25n4cknuhed8" path="res://Sprites/Background/Brown.png" id="2_j3uwr"]
 [ext_resource type="FontFile" uid="uid://des0woe0cxl1n" path="res://Sprites/opensans_semibold.ttf" id="3_deex0"]
+[ext_resource type="Texture2D" uid="uid://486bc7xrtn3t" path="res://Sprites/Traps/Fan/On (24x8).png" id="4_txoii"]
 [ext_resource type="PackedScene" uid="uid://cn8p6er2ve52n" path="res://World/Cherry/cherry.tscn" id="12_s8sbn"]
 [ext_resource type="TileSet" uid="uid://cfu7wy2j6hnf" path="res://World/tilemap.tres" id="14_lkgl3"]
 [ext_resource type="StyleBox" uid="uid://dywna2sd8nxva" path="res://Menu/button_normal_style.tres" id="15_o4kqp"]
@@ -15,6 +17,50 @@
 [ext_resource type="Texture2D" uid="uid://ino02t5rte8n" path="res://Sprites/Joystick/flatLight/flatLight03.png" id="29_3ephs"]
 [ext_resource type="Texture2D" uid="uid://c74eu5shng3sr" path="res://Sprites/Joystick/transparentLight/transparentLight03.png" id="30_ug7sb"]
 [ext_resource type="Script" path="res://Menu/MainMenu.cs" id="31_i1k1m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfmyb"]
+atlas = ExtResource("1_e4fem")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b1uyp"]
+atlas = ExtResource("1_e4fem")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6onv"]
+atlas = ExtResource("1_e4fem")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nfxno"]
+animations = [{
+"frames": [SubResource("AtlasTexture_nfmyb"), SubResource("AtlasTexture_b1uyp"), SubResource("AtlasTexture_d6onv")],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gapy"]
+atlas = ExtResource("4_txoii")
+region = Rect2(0, 0, 24, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5yyr"]
+atlas = ExtResource("4_txoii")
+region = Rect2(24, 0, 24, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwfpt"]
+atlas = ExtResource("4_txoii")
+region = Rect2(48, 0, 24, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_diaxo"]
+atlas = ExtResource("4_txoii")
+region = Rect2(72, 0, 24, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jdygy"]
+animations = [{
+"frames": [SubResource("AtlasTexture_8gapy"), SubResource("AtlasTexture_m5yyr"), SubResource("AtlasTexture_pwfpt"), SubResource("AtlasTexture_diaxo")],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c5qwh"]
 
@@ -610,6 +656,25 @@ sources/4 = SubResource("TileSetAtlasSource_od150")
 [node name="Level" type="Node2D" parent="."]
 unique_name_in_owner = true
 
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Level"]
+_spawnable_scenes = PackedStringArray("res://Player/player.tscn")
+spawn_path = NodePath("..")
+
+[node name="Fire" type="AnimatedSprite2D" parent="Level"]
+z_index = 2
+position = Vector2(825, 545)
+scale = Vector2(2, 2)
+frames = SubResource("SpriteFrames_nfxno")
+playing = true
+
+[node name="Fan" type="AnimatedSprite2D" parent="Level"]
+z_index = 1
+position = Vector2(136, 40)
+rotation = -3.14159
+scale = Vector2(2, 2)
+frames = SubResource("SpriteFrames_jdygy")
+playing = true
+
 [node name="TileMap" type="TileMap" parent="Level"]
 scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_q544v")
@@ -765,6 +830,7 @@ offset_right = 400.0
 offset_bottom = 72.0
 theme_override_fonts/font = ExtResource("3_deex0")
 theme_override_font_sizes/font_size = 32
+text = "localhost"
 placeholder_text = "localhost"
 
 [node name="JoinGameButton" type="Button" parent="MainMenu/Redwall"]
