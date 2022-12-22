@@ -15,7 +15,7 @@ public partial class MainMenu : Node2D
 	{
 		if (OS.GetName() != "iOS" && OS.GetName() != "Android")
 		{
-			GetTree().Root.Size = new Vector2i(2560, 1440);
+			// GetTree().Root.Size = new Vector2i(2560, 1440);
 		}
 		
 		Position = Vector2.Zero; // Position Main menu over the level.
@@ -68,12 +68,12 @@ public partial class MainMenu : Node2D
 		player.Position = new Vector2(140, 187); // Position the player at the spawnpoint. 
 		Level.AddChild(player);
 		
-		if (!Level.HasNode("1")) // Host = Peer ID 1
-		{
-			var host = (Player)scene.Instantiate();
-			host.Name = "1";
-			Level.AddChild(host);
-		}
+		// if (!Level.HasNode("1")) // Host = Peer ID 1
+		// {
+		// 	var host = (Player)scene.Instantiate();
+		// 	host.Name = "1";
+		// 	Level.AddChild(host);
+		// }
 	}
 	
 }

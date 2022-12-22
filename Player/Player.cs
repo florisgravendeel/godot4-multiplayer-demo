@@ -14,21 +14,28 @@ public partial class Player : CharacterBody2D
 	public AnimatedSprite2D CurrentSkin => AnimatedSprite2D[(int)Skin];
 	private Skins Skin { get; set; }
 	
-	private MultiplayerSynchronizer MultiplayerSynchronizer { get; set; }
-	private MultiplayerPlayer MultiplayerPlayer { get; set; }
+	private MultiplayerSynchronizer MultiplayerPlayer { get; set; }
+	private Godot.Object MultiplayerPlayerScript { get; set; }
 	
+	public override void _EnterTree()
+	{
+		var script = (GDScript) GD.Load("res://Player/MultiplayerPlayer.gd");
+		MultiplayerPlayerScript = (Godot.Object) script.New(); 
+		
+		MultiplayerPlayer = GetNode<MultiplayerSynchronizer>("MultiplayerSynchronizer");
+		MultiplayerPlayer.SetMultiplayerAuthority((int.Parse(Name)));
+	}
+
 	public override void _Ready()
 	{
 		SetSkin(Skins.MaskFrog);
 		AnimatedSprite2D = GetChildren().OfType<AnimatedSprite2D>().ToArray();
-		MultiplayerPlayer = GetNode<MultiplayerPlayer>("Network");
 	}
 	
 	public override void _PhysicsProcess(double delta)
 	{
-		if (!Multiplayer.GetUniqueId().ToString().Equals(Name)) // If the player is the local authority on the server
+		if (!MultiplayerPlayer.IsMultiplayerAuthority()) // If the player is the local authority on the server
 		{
-			Position = MultiplayerPlayer.SyncPosition;
 			return;
 		}
 		Vector2 velocity = Velocity;
@@ -61,7 +68,7 @@ public partial class Player : CharacterBody2D
 		}
 
 		Velocity = velocity;
-		MultiplayerPlayer.SyncPosition = Position;
+		MultiplayerPlayerScript._Set("position", GlobalPosition);
 		MoveAndSlide();
 	}
 
