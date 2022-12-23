@@ -123,7 +123,12 @@ public partial class Player : CharacterBody2D
 		{
 			playerName = "Player";
 		}
-		GetParent().GetNode<Player>(peerId.ToString()).GetNode<Label>("PlayerTag").Text = playerName;
+
+		var player = GetParent().GetNodeOrNull<Player>(peerId.ToString());
+		if (player != null)
+		{
+			player.GetNode<Label>("PlayerTag").Text = playerName;
+		}
 	}
 	
 	[RPC(MultiplayerAPI.RPCMode.AnyPeer, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable, CallLocal = false)]
