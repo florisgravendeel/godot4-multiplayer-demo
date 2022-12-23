@@ -1,7 +1,7 @@
-[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://cfu7wy2j6hnf"]
+[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://c4fvby1j2b04y"]
 
-[ext_resource type="Texture2D" uid="uid://bilw2ckm0xoph" path="res://Sprites/Terrain/Terrain (16x16).png" id="1_tetrd"]
-[ext_resource type="Texture2D" uid="uid://d25n4cknuhed8" path="res://Sprites/Background/Brown.png" id="2_hslc1"]
+[ext_resource type="Texture2D" uid="uid://bilw2ckm0xoph" path="res://Sprites/Terrain (16x16).png" id="1_tetrd"]
+[ext_resource type="Texture2D" uid="uid://d25n4cknuhed8" path="res://Sprites/Brown.png" id="2_hslc1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_c5qwh"]
 

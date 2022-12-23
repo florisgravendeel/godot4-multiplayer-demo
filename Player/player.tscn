@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=3 uid="uid://yvatxtew7fyb"]
+[gd_scene load_steps=110 format=3 uid="uid://cfyt5t2ise2d8"]
 
 [ext_resource type="Script" path="res://Player/Player.cs" id="1_53pbs"]
 [ext_resource type="Texture2D" uid="uid://ce4fo4cf8sq0c" path="res://Sprites/Main Characters/Ninja Frog/Fall (32x32).png" id="2_s5isc"]
@@ -18,8 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://wvvdb2d4b0me" path="res://Sprites/Main Characters/Pink Man/Wall Jump (32x32).png" id="16_x3adv"]
 [ext_resource type="FontFile" uid="uid://des0woe0cxl1n" path="res://Sprites/opensans_semibold.ttf" id="17_m1eln"]
 [ext_resource type="Script" path="res://Player/DustParticles.cs" id="17_nhwiy"]
-[ext_resource type="Texture2D" uid="uid://cm7wj6kmv84hx" path="res://Sprites/Other/Dust Particle.png" id="18_mkc4o"]
 [ext_resource type="Script" path="res://Player/MultiplayerPlayer.cs" id="19_chf1d"]
+[ext_resource type="Texture2D" uid="uid://cm7wj6kmv84hx" path="res://Sprites/Dust Particle.png" id="19_fb6gf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dgq63"]
 atlas = ExtResource("3_7yyky")
@@ -495,7 +495,7 @@ lifetime = 0.2
 explosiveness = 0.07
 randomness = 0.26
 local_coords = true
-texture = ExtResource("18_mkc4o")
+texture = ExtResource("19_fb6gf")
 gravity = Vector2(2.08165e-12, 10)
 
 [node name="DustParticle2" type="CPUParticles2D" parent="Particles"]
@@ -504,7 +504,7 @@ amount = 2
 lifetime = 0.2
 explosiveness = 0.07
 randomness = 0.26
-texture = ExtResource("18_mkc4o")
+texture = ExtResource("19_fb6gf")
 gravity = Vector2(2.08165e-12, 10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

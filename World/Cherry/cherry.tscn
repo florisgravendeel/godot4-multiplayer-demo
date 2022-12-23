@@ -1,7 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://cn8p6er2ve52n"]
+[gd_scene load_steps=31 format=3]
 
-[ext_resource type="Texture2D" uid="uid://bec65d0hdr1bx" path="res://Sprites/Items/Fruits/Cherries.png" id="1_vogij"]
-[ext_resource type="Texture2D" uid="uid://dixwnl02a3dgv" path="res://Sprites/Items/Fruits/Collected.png" id="2_a8xxs"]
+[ext_resource type="Texture2D" uid="uid://bec65d0hdr1bx" path="res://Sprites/Cherry/Cherries.png" id="1_vogij"]
+[ext_resource type="Texture2D" uid="uid://dixwnl02a3dgv" path="res://Sprites/Cherry/Collected.png" id="2_a8xxs"]
 [ext_resource type="Script" path="res://World/Cherry/Cherry.cs" id="3_11gqb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oymh2"]
