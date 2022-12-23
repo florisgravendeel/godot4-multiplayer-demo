@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=3 uid="uid://dkatjsnxumns2"]
+[gd_scene load_steps=110 format=3 uid="uid://dkatjsnxumns2"]
 
 [ext_resource type="Script" path="res://Player/Player.cs" id="1_53pbs"]
 [ext_resource type="Texture2D" uid="uid://ce4fo4cf8sq0c" path="res://Player/Main Characters/Ninja Frog/Fall (32x32).png" id="2_lo8yc"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cufykykice8u7" path="res://Player/Main Characters/Pink Man/Jump (32x32).png" id="14_qnoyh"]
 [ext_resource type="Texture2D" uid="uid://dh7l7kbj13551" path="res://Player/Main Characters/Pink Man/Run (32x32).png" id="15_qk181"]
 [ext_resource type="Texture2D" uid="uid://wvvdb2d4b0me" path="res://Player/Main Characters/Pink Man/Wall Jump (32x32).png" id="16_5oxgg"]
+[ext_resource type="Script" path="res://Player/DustParticles.cs" id="17_nhwiy"]
 [ext_resource type="Texture2D" uid="uid://cm7wj6kmv84hx" path="res://Sprites/Other/Dust Particle.png" id="18_mkc4o"]
 [ext_resource type="FontFile" uid="uid://des0woe0cxl1n" path="res://Sprites/opensans_semibold.ttf" id="19_3pepm"]
 [ext_resource type="Script" path="res://Player/MultiplayerPlayer.cs" id="19_chf1d"]
@@ -448,6 +449,9 @@ height = 58.0
 properties/0/path = NodePath(".:SyncPosition")
 properties/0/spawn = true
 properties/0/sync = true
+properties/1/path = NodePath(".:SyncFlipH")
+properties/1/spawn = true
+properties/1/sync = true
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_53pbs")
@@ -472,6 +476,7 @@ playing = true
 
 [node name="Particles" type="Node2D" parent="."]
 position = Vector2(-140, -287)
+script = ExtResource("17_nhwiy")
 
 [node name="DustParticle1" type="CPUParticles2D" parent="Particles"]
 position = Vector2(145, 318)

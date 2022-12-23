@@ -4,22 +4,62 @@ namespace Multiplayerdemo.Player;
 
 public partial class MultiplayerPlayer : Node
 {
-	// private Vector2 _position;
-	// [Export]
-	// public Vector2 Position
+	private MultiplayerSynchronizer MultiplayerSynchronizer { get; set; }
+	
+	public override void _Ready()
+	{
+		MultiplayerSynchronizer = GetNode<MultiplayerSynchronizer>("MultiplayerSynchronizer");
+	}
+
+	private Vector2 _syncPosition;
+	[Export] public Vector2 SyncPosition
+	{
+		get => _syncPosition;
+		set
+		{
+			if (MultiplayerSynchronizer.IsMultiplayerAuthority())
+			{
+				_syncPosition = value;
+			}
+			else
+			{
+				GetParent<World.Player>().Position = value;
+			}
+		}
+	}
+	
+	// private string _syncAnimation;
+	// [Export] public string SyncAnimation
 	// {
-	// 	get => _position;
+	// 	get => _syncAnimation;
 	// 	set
 	// 	{
-	// 		if (IsMultiplayerAuthority())
+	// 		if (MultiplayerSynchronizer.IsMultiplayerAuthority())
 	// 		{
-	// 			_position = value;
+	// 			_syncAnimation = value;
 	// 		}
 	// 		else
 	// 		{
-	// 			GetParent<CharacterBody2D>().Position = value;
+	// 			GetParent<World.Player>().CurrentSkin.Animation = value;
 	// 		}
 	// 	}
 	// }
-	[Export] public Vector2 SyncPosition = Vector2.Zero;
+	
+	private bool _syncFlipH;
+	[Export] public bool SyncFlipH
+	{
+		get => _syncFlipH;
+		set
+		{
+			if (MultiplayerSynchronizer.IsMultiplayerAuthority())
+			{
+				_syncFlipH = value;
+			}
+			else
+			{
+				GetParent<World.Player>().CurrentSkin.FlipH = value;
+			}
+		}
+	}
+
 }
