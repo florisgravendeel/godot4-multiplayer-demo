@@ -9,6 +9,7 @@ public partial class MainMenu : Node2D
 	private Button JoinButton { get; set; }
 	private Button HostButton { get; set; }
 	private LineEdit InputField { get; set; }
+	private Node2D Menu { get; set; }
 	private Node2D Level { get; set; }
 	
 	public override void _Ready()
@@ -18,7 +19,9 @@ public partial class MainMenu : Node2D
 			// GetTree().Root.Size = new Vector2i(2560, 1440);
 		}
 		
-		Position = Vector2.Zero; // Position Main menu over the level.
+		Menu = GetNode<Node2D>("%MainMenu");
+		Menu.Position = Vector2.Zero; // Position Main menu over the level.
+
 		Level = GetNode<Node2D>("%Level"); 
 		Level.Hide(); // Hide the level.
 		
@@ -55,7 +58,7 @@ public partial class MainMenu : Node2D
 
 	private void HideMenu()
 	{
-		Hide();
+		Menu.Hide();
 		Position = new Vector2(3000, 3000);
 		Level.Show();
 	}
@@ -63,17 +66,9 @@ public partial class MainMenu : Node2D
 	private void OnPeerConnected(long id)
 	{
 		var scene = (PackedScene)ResourceLoader.Load("res://Player/player.tscn");
-		var player = (Player)scene.Instantiate();
+		var player = (Node)scene.Instantiate();
 		player.Name = id.ToString();
-		player.Position = new Vector2(140, 187); // Position the player at the spawnpoint. 
 		Level.AddChild(player);
-		
-		// if (!Level.HasNode("1")) // Host = Peer ID 1
-		// {
-		// 	var host = (Player)scene.Instantiate();
-		// 	host.Name = "1";
-		// 	Level.AddChild(host);
-		// }
 	}
 	
 }

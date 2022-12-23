@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://486bc7xrtn3t" path="res://Sprites/Traps/Fan/On (24x8).png" id="4_txoii"]
 [ext_resource type="PackedScene" uid="uid://cn8p6er2ve52n" path="res://World/Cherry/cherry.tscn" id="12_s8sbn"]
 [ext_resource type="TileSet" uid="uid://cfu7wy2j6hnf" path="res://World/tilemap.tres" id="14_lkgl3"]
+[ext_resource type="Script" path="res://Menu/MainMenu.cs" id="15_l05ti"]
 [ext_resource type="StyleBox" uid="uid://dywna2sd8nxva" path="res://Menu/button_normal_style.tres" id="15_o4kqp"]
-[ext_resource type="Script" path="res://Menu/main_menu.gd" id="15_optqy"]
 [ext_resource type="Texture2D" uid="uid://jvab0wy7bgtf" path="res://Sprites/Joystick/flatLight/flatLight01.png" id="23_sqbsr"]
 [ext_resource type="Texture2D" uid="uid://2p55owwlh1ry" path="res://Sprites/Joystick/transparentLight/transparentLight01.png" id="24_pt4jp"]
 [ext_resource type="Texture2D" uid="uid://ci6ddahaerwat" path="res://Sprites/Joystick/flatLight/flatLight08.png" id="25_7j2mv"]
@@ -655,7 +655,6 @@ sources/4 = SubResource("TileSetAtlasSource_od150")
 
 [node name="Level" type="Node2D" parent="."]
 unique_name_in_owner = true
-script = ExtResource("15_optqy")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Level"]
 _spawnable_scenes = PackedStringArray("res://Player/player.tscn")
@@ -809,6 +808,7 @@ action = "left"
 [node name="MainMenu" type="Node2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(2.08165e-12, -1000)
+script = ExtResource("15_l05ti")
 
 [node name="TileMap" type="TileMap" parent="MainMenu"]
 scale = Vector2(2, 2)
@@ -878,6 +878,3 @@ theme_override_fonts/font = ExtResource("3_deex0")
 theme_override_font_sizes/font_size = 32
 text = "IP
 "
-
-[connection signal="pressed" from="MainMenu/Redwall/JoinGameButton" to="Level" method="_on_join_pressed"]
-[connection signal="pressed" from="MainMenu/Redwall/HostGameButton" to="Level" method="_on_host_pressed"]

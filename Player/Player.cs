@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Godot;
+using Multiplayerdemo.Player;
 
 namespace Multiplayerdemo.World;
 
@@ -14,28 +15,28 @@ public partial class Player : CharacterBody2D
 	public AnimatedSprite2D CurrentSkin => AnimatedSprite2D[(int)Skin];
 	private Skins Skin { get; set; }
 	
-	private MultiplayerSynchronizer MultiplayerPlayer { get; set; }
-	private Godot.Object MultiplayerPlayerScript { get; set; }
+	private MultiplayerSynchronizer MultiplayerSynchronizer { get; set; }
+	private MultiplayerPlayer MultiplayerPlayer { get; set; }
 	
 	public override void _EnterTree()
 	{
-		var script = (GDScript) GD.Load("res://Player/MultiplayerPlayer.gd");
-		MultiplayerPlayerScript = (Godot.Object) script.New(); 
-		
-		MultiplayerPlayer = GetNode<MultiplayerSynchronizer>("MultiplayerSynchronizer");
-		MultiplayerPlayer.SetMultiplayerAuthority((int.Parse(Name)));
+		MultiplayerSynchronizer = GetNode<MultiplayerSynchronizer>("MultiplayerPlayer/MultiplayerSynchronizer");
+		MultiplayerSynchronizer.SetMultiplayerAuthority((int.Parse(Name)));
 	}
 
 	public override void _Ready()
 	{
 		SetSkin(Skins.MaskFrog);
 		AnimatedSprite2D = GetChildren().OfType<AnimatedSprite2D>().ToArray();
+		MultiplayerPlayer = GetNode<MultiplayerPlayer>("MultiplayerPlayer");
+		Position = new Vector2(140, 187); // Teleport the player to the spawnpoint
 	}
 	
 	public override void _PhysicsProcess(double delta)
 	{
-		if (!MultiplayerPlayer.IsMultiplayerAuthority()) // If the player is the local authority on the server
+		if (!MultiplayerSynchronizer.IsMultiplayerAuthority()) // If the player is the local authority on the server
 		{
+			Position = MultiplayerPlayer.SyncPosition;
 			return;
 		}
 		Vector2 velocity = Velocity;
@@ -68,10 +69,9 @@ public partial class Player : CharacterBody2D
 		}
 
 		Velocity = velocity;
-		MultiplayerPlayerScript._Set("position", GlobalPosition);
 		MoveAndSlide();
+		MultiplayerPlayer.SyncPosition = Position;
 	}
-
 
 	public override void _Input(InputEvent @event)
 	{
