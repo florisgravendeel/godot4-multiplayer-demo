@@ -896,10 +896,10 @@ placeholder_text = "Enter a name"
 
 [node name="PlayerNameLabel" type="Label" parent="MainMenu/Redwall"]
 layout_mode = 1
-offset_left = 18.0
-offset_top = -58.0
-offset_right = 294.0
-offset_bottom = -10.0
+offset_left = 17.0
+offset_top = -57.0
+offset_right = 293.0
+offset_bottom = -9.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_deex0")
 theme_override_font_sizes/font_size = 32
