@@ -66,7 +66,7 @@ public partial class MainMenu : Node2D
 	private void OnPeerConnected(long id)
 	{
 		var scene = (PackedScene)ResourceLoader.Load("res://Player/player.tscn");
-		var player = (Node)scene.Instantiate();
+		var player = (Player)scene.Instantiate();
 		player.Name = id.ToString();
 		Level.AddChild(player);
 	}

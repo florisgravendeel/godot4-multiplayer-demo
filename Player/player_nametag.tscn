@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb3yen5ocwrdw"]
+
+[ext_resource type="FontFile" uid="uid://des0woe0cxl1n" path="res://Sprites/opensans_semibold.ttf" id="1_e25ub"]
+
+[node name="PlayerTag" type="Label"]
+offset_left = -62.0
+offset_top = -51.0
+offset_right = 63.0
+offset_bottom = -22.0
+theme_override_fonts/font = ExtResource("1_e25ub")
+theme_override_font_sizes/font_size = 18
+text = "Tag"
+horizontal_alignment = 1

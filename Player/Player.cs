@@ -25,6 +25,7 @@ public partial class Player : CharacterBody2D
 	{
 		MultiplayerSynchronizer = GetNode<MultiplayerSynchronizer>("MultiplayerPlayer/MultiplayerSynchronizer");
 		MultiplayerSynchronizer.SetMultiplayerAuthority((int.Parse(Name)));
+
 	}
 
 	public override void _Ready()
@@ -34,6 +35,10 @@ public partial class Player : CharacterBody2D
 		MultiplayerPlayer = GetNode<MultiplayerPlayer>("MultiplayerPlayer");
 		Position = new Vector2(140, 187); // Teleport the player to the spawnpoint
 
+		var playerName = GetParent().GetParent().GetNode<LineEdit>("MainMenu/Redwall/PlayerName").Text;
+		Rpc(nameof(SetPlayerNameTag), playerName, Multiplayer.GetUniqueId());
+		Rpc(nameof(GetOtherPlayerTags), Multiplayer.GetUniqueId());
+		
 		SetPhysicsProcess(MultiplayerSynchronizer.IsMultiplayerAuthority()); // Enable physics process only on the local authority 
 		SetProcessInput(MultiplayerSynchronizer.IsMultiplayerAuthority());
 	}
@@ -95,7 +100,6 @@ public partial class Player : CharacterBody2D
 	private void SetSkin(int skin)
 	{
 		Skin = (Skins) skin;
-		GetNode<Label>("PlayerTag").Text = Skin.ToString();
 		var list = GetChildren().OfType<AnimatedSprite2D>().ToList();
 		list.ForEach(x =>
 		{
@@ -110,6 +114,27 @@ public partial class Player : CharacterBody2D
 	private void SetAnimation(string name)
 	{
 		CurrentSkin.Animation = name;
+	}
+
+	[RPC(MultiplayerAPI.RPCMode.AnyPeer, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable, CallLocal = true)]
+	private void SetPlayerNameTag(string playerName, int peerId)
+	{
+		if (String.IsNullOrEmpty(playerName))
+		{
+			playerName = "Player";
+		}
+		GetParent().GetNode<Player>(peerId.ToString()).GetNode<Label>("PlayerTag").Text = playerName;
+	}
+	
+	[RPC(MultiplayerAPI.RPCMode.AnyPeer, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable, CallLocal = false)]
+	private void GetOtherPlayerTags(int peerId)
+	{
+		var players = GetParent().GetChildren().OfType<Player>().ToList();
+		foreach (var player in players)
+		{
+			var playerName = GetParent().GetParent().GetNode<LineEdit>("MainMenu/Redwall/PlayerName").Text;
+			player.RpcId(peerId, nameof(SetPlayerNameTag), playerName, Multiplayer.GetUniqueId());
+		}
 	}
 	
 	public enum Skins

@@ -18,8 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://wvvdb2d4b0me" path="res://Player/Main Characters/Pink Man/Wall Jump (32x32).png" id="16_5oxgg"]
 [ext_resource type="Script" path="res://Player/DustParticles.cs" id="17_nhwiy"]
 [ext_resource type="Texture2D" uid="uid://cm7wj6kmv84hx" path="res://Sprites/Other/Dust Particle.png" id="18_mkc4o"]
-[ext_resource type="FontFile" uid="uid://des0woe0cxl1n" path="res://Sprites/opensans_semibold.ttf" id="19_3pepm"]
 [ext_resource type="Script" path="res://Player/MultiplayerPlayer.cs" id="19_chf1d"]
+[ext_resource type="PackedScene" uid="uid://cb3yen5ocwrdw" path="res://Player/player_nametag.tscn" id="19_q3k8w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yqgkg"]
 atlas = ExtResource("3_ejc4x")
@@ -474,6 +474,12 @@ frames = SubResource("SpriteFrames_a4eqf")
 animation = &"idle"
 playing = true
 
+[node name="PlayerTag" parent="." instance=ExtResource("19_q3k8w")]
+offset_left = -61.0
+offset_top = -56.0
+offset_right = 64.0
+offset_bottom = -27.0
+
 [node name="Particles" type="Node2D" parent="."]
 position = Vector2(-140, -287)
 script = ExtResource("17_nhwiy")
@@ -500,16 +506,6 @@ gravity = Vector2(2.08165e-12, 10)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_y50ng")
-
-[node name="PlayerTag" type="Label" parent="."]
-offset_left = -62.0
-offset_top = -51.0
-offset_right = 63.0
-offset_bottom = -22.0
-theme_override_fonts/font = ExtResource("19_3pepm")
-theme_override_font_sizes/font_size = 18
-text = "Tag"
-horizontal_alignment = 1
 
 [node name="MultiplayerPlayer" type="Node" parent="."]
 script = ExtResource("19_chf1d")
