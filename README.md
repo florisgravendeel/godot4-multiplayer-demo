@@ -1,6 +1,6 @@
 <br />
 <div align="center">
-      <img src="https://user-images.githubusercontent.com/1598486/209569770-64ca0ef8-7830-43ee-b065-dce5a8417ba4.png" alt="Logo" width="80" height="80">    
+      <img src="https://user-images.githubusercontent.com/1598486/209569770-64ca0ef8-7830-43ee-b065-dce5a8417ba4.png" alt="Logo" width="80" height="86">    
 </div>
 
 # Godot 4 Multiplayer Demo 
