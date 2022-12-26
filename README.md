@@ -13,11 +13,11 @@ https://user-images.githubusercontent.com/1598486/209580304-18f85a7e-b251-41b4-a
 
 ## Features:
   - Character selection
+  - Custom name tags
   - Multiplayer menu 
   - Multiplayer level
   - Using the new network nodes MultiplayerSynchronizer and MultiplayerSpawner!
-  - Scene Replication 
-  - Name tags 
+  - Scene replication  
 
 ## Instructions:
   - 'AWSD' or '↑↓→←' on your keyboard keys for movement
